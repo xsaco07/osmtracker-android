@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import net.osmtracker.R;
+import net.osmtracker.db.DataHelper;
 import net.osmtracker.db.TrackContentProvider;
 import net.osmtracker.db.model.Track;
+
+import java.util.Date;
 
 /**
  * Base class for activities that edit track details.
@@ -90,6 +94,14 @@ public abstract class TrackDetailEditor extends Activity {
 		// Save name field, if changed, to db.
 		// String class required for equals to work, and for trim().
 		String enteredName = etName.getText().toString().trim();
+		enteredName += "_" + DataHelper.FILENAME_FORMATTER.format(new Date());
+
+		Toast nameNotification =
+				Toast.makeText(getApplicationContext(),
+						getResources().getString(R.string.trackdetail_name_date) , Toast.LENGTH_LONG);
+
+		nameNotification.show();
+
 		if ((enteredName.length() > 0)) {
 			values.put(TrackContentProvider.Schema.COL_NAME, enteredName);
 		}
