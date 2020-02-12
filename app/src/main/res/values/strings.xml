@@ -138,6 +138,7 @@
 	
 	<!-- Track detail -->
 	<string name="trackdetail_save">Save</string>
+	<string name="trackdetail_name_date">The date is added to prevent conflicts with duplicate names</string>
 	
 	<!-- Various -->
 	<string name="various_unit_meters">m</string>
